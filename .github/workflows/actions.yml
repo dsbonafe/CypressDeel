@@ -4,6 +4,7 @@
 name: Node.js CI
 
 on:
+  workflow_dispatch:
   push:
     branches: master
   pull_request:
@@ -21,23 +22,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2.4.0
-    
-    - name: Chrome headless
-      uses: ./
+    - name: Cypress.io
+      uses: cypress-io/github-action@v2.9.7
       with:
-          working-directory: ./chrome
-          browser: chrome
-          headless: true
+         start: yarn run cy:chrome
+         run: |
+          echo "Waiting 15s to finish"
+          sleep 15s
 
-    - uses: actions/upload-artifact@v2
-      with:
-          name: screenshots-in-headless-chrome
-          path: ./chrome/cypress/screenshots
-
-    - uses: actions/upload-artifact@v2
-      with:
-          name: video-in-headless-chrome
-          path: ./chrome/cypress/videos
-
-    - run: npx image-size cypress/screenshots/**/*.png
-      working-directory: ./chrome
