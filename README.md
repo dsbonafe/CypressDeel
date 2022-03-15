@@ -8,4 +8,7 @@ yarn run cy:chrome
 
 # How to see results
 
-you are able to see results using Cypress Dashboard integrated in this repository.
+You will be able to see results in (Cypress Dashboard)[https://dashboard.cypress.io/organizations] using the following credentials:
+
+Username: douglas.testador02@gmail.com
+Password: Douglas!!!11
